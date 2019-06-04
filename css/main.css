@@ -33,9 +33,13 @@ ul.posts li { list-style: none; }
 }
 
 .container {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
   position: relative;
-  width: 100%;
-  max-width: 400px;
+  width: 40%;
+  max-width: 10000px;
 
 }
 
@@ -56,7 +60,7 @@ ul.posts li { list-style: none; }
   width: 100%;
   opacity: 0;
   transition: .3s ease;
-  background-color: white;
+  background-color: black;
 }
 
 .container:hover .overlay {
