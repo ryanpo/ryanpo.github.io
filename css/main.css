@@ -1,4 +1,4 @@
-body { margin: 60px auto; width: 70%; }
+body { margin: 60px auto; width: 70%; opacity: 1; transition: 1s opacity;}
 
 a { text-decoration: none; color: #999; }
 a:hover { text-decoration: underline; }
@@ -68,3 +68,8 @@ ul.posts li { list-style: none; }
 }
 
 
+
+body.fade {
+    opacity: 0;
+    transition: none;
+}
