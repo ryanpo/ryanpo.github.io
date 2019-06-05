@@ -10,9 +10,7 @@
   
   <body>
 
-    <script>
-      document.body.className = 'fade';
-    </script>
+
 
     <nav>
 <ul>
@@ -22,7 +20,10 @@
 <li><a href="/projects">projects</a></li>
 </ul>
     </nav>
-<div class="blurb">
+<div id="blurb" class = "content">
+    <script>
+      document.getElementById("blurb").classList.add('fade');
+    </script>
 
   {{ content }}
 
@@ -36,7 +37,7 @@
   </footer>
   <script>
     window.onload = function(){
-      document.body.className = '';
+      document.getElementById("blurb").classList.remove('fade');
     }
   </script>
   </body>
