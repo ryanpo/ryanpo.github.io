@@ -7,7 +7,8 @@ Projects:
 WIP Projects:
    Computer Vision Project
    Functional Programming Exploration
-   Block-Chain Technology
    Android App
+
+
 
 
