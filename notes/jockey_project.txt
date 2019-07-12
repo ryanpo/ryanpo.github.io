@@ -1,0 +1,35 @@
+Content:
+	Project Structure
+
+
+Whole Process:
+	Basic pre-trained human object detector (YOLOv3)
+	Object detection of jockeys using keras retinanet network architecture
+	Tracking using OpenCV trackers
+	Classification using LeNet network architecture
+	Feature extraction -- Second Model (build from scratch)
+	Fine Tuning of Classification
+	Synthesis?
+
+
+Stuff that Worked:
+	Object Detector
+	Tracking
+	Classification
+
+
+
+
+1. Project Structure
+Multiple approaches can be taken when trying to identify jockeys, but the two main methods that come to mind are 1. contructing a general "jockey" object detector and then building a classifier to identify each individual jockey and 2. constructing a unique object detection model for every unique jockey. Let's talk evaluate the two approavhes.
+	
+1.1 General Model --> Classification
+This model relies on a model that identifies the position of every jockey and the undergoes classification in order to differentiate
+between unique jockeys. This model has a high re-usability rate, where the initial jockey-detecting model does not require a large data set to achieve acceptable results. The problem here lies in the difficulty in training an accurate classification model. Classification is difficult primarily due to the resolution of the video stream provided. The location of each jockey occupies approximately 25px*25px of space, allowing for limited data when training a classifier. Despite this, data collection is much less tedious, where the most labour-intensive aspect of this approach lies in the initial tagging of jockey positions and subsequently the manual classification of the classifier data set.
+
+1.2 Jockey Specific Object Detector
+This model trains an object detector specific to a particular jockey, by doing so for all existing jockeys, actual implementation becomes incredibly trivial, simply run 12 pre-trained models at once to detect the position of each horse. The problem in this approach lies in the large amount of labour required in individual tagging videos for each jockey. Data collection for object detectors are often much more labour intensive that classifiers.
+
+
+
+
