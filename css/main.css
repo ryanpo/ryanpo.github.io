@@ -41,6 +41,22 @@ div { opacity: 1; transition: 1s opacity; }
   position: relative;
 }
 
+.blog_container {
+  position: fixed;
+  right = 0;
+  left = 0;
+  margin-left: auto;
+  margin-right: auto; 
+  margin-top: 7.5px;
+  margin-bottom: 7.5px;
+  position: relative;
+  width: 800px;
+  height: auto;
+  max-width: 100000px;
+  overflow: hidden;
+  background-position: center; 
+  }
+
 
 .container_large {
   margin-left: 1%;
@@ -53,7 +69,7 @@ div { opacity: 1; transition: 1s opacity; }
   max-width: 10000px;
   overflow: hidden;
   background-position: center; 
-}
+  }
 
 .container {
   margin-left: 1%;
