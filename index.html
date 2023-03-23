@@ -1,28 +1,179 @@
----
-layout: default
-title: Po's Site
----
+<!DOCTYPE HTML>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<div style="display:flex" class="flex">
-     <div class="containerleft">
+  <title>Po Ryan</title>
+  
+  <meta name="author" content="Po Ryan">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
 
-          <img src="/images/profile.jpg" class="image">  
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:63%;vertical-align:middle">
+              <p style="text-align:center">
+                <name>Po Ryan</name>
+              </p>I am a first year PhD student at Stanford University working with <a href="https://stanford.edu/~gordonwz/">Prof. Gordon Wetzstein</a> at the <a href="https://www.computationalimaging.org/">Stanford Computational Imaging Lab</a>. My research lies in 3D content genearation/reconstruction. My work is supported by the Stanford Graduate Fellowship.
+              <p>
+              </p>
+              <p>Prior to Stanford, I spent my undergrad in Carnegie Mellon University working with <a href="https://www.cs.cmu.edu/~igkioule/">Prof. Ioannis Gkioulekas</a>.
+              </p>
+              <p style="text-align:center">
+                <a href="mailto:rlpo@stanford.edu">Email</a> &nbsp/&nbsp
+                <a href="data/RyanPoCV.pdf">CV</a>
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <a href="images/profile.png"><img style="width:100%;max-width:100%" alt="profile photo" src="images/profile_circle.png" class="hoverZoomLink"></a>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Research</heading>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+				
+      
+		  
+        <tr onmouseout="mira_stop()" onmouseover="mira_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='mira_image'>
+                  <img src='images/comp3d.png' width="180"></div>
+                <img src='images/comp3d.png' width="180">
+              </div>
+              <script type="text/javascript">
+                function mira_start() {
+                  document.getElementById('mira_image').style.opacity = "1";
+                }
 
-     </div>
-     <div class="containerright">
+                function mira_stop() {
+                  document.getElementById('mira_image').style.opacity = "0";
+                }
+                mira_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://ryanpo.com/comp3d/">
+                <papertitle>Compositional 3D Scene Generation using Locally Conditioned Diffusion
+                </papertitle>
+              </a>
+              <br>
+              <a href="">Ryan Po</a>, 
+              <a href="">Gordon Wetzstein</a>
+              <br>
+              <em>In submission</em>
+              <br>
+              <a href="https://ryanpo.com/comp3d/">project page</a> /
+              <a href="https://arxiv.org/abs/2303.12218">arXiv</a>
+              <p></p>
+            </td>
+          </tr>		
           
-	 <h1>
-	 	Hi there, I'm Po!
-	 </h1>
-	 <p>
-	 I am a first year PhD student at Stanford University working with <a href="https://stanford.edu/~gordonwz/">Prof. Gordon Wetzstein</a> at the <a href="https://www.computationalimaging.org/">Stanford Computational Imaging Lab</a>. My research lies in 3D content genearation/reconstruction. My work is supported by the Stanford Graduate Fellowship.	
-	</p>
-	<p>
-	Prior to Stanford, I spent my undergrad in Carnegie Mellon University working with <a href="https://www.cs.cmu.edu/~igkioule/">Prof. Ioannis Gkioulekas</a>.
-	</p>
+          <tr onmouseout="samurai_stop()" onmouseover="samurai_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='samurai_image'>
+                  <img src='images/nfd.gif' width="180"></div>
+                <img src='images/nfd.gif' width="180">
+              </div>
+              <script type="text/javascript">
+                function samurai_start() {
+                  document.getElementById('samurai_image').style.opacity = "1";
+                }
 
-     </div>
-</div>
+                function samurai_stop() {
+                  document.getElementById('samurai_image').style.opacity = "0";
+                }
+                samurai_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://jryanshue.com/nfd/index.html">
+                <papertitle>3D Neural Field Generation using Triplane Diffusion
+                </papertitle>
+              </a>
+              <br>
+              <a href="">J. Ryan Shue*</a>, 
+              <a href="">Eric Ryan Chan*</a>, 
+              <a href="">Ryan Po*</a>, 
+              <a href="">Zachary Ankner*</a>, 
+              <a href="">Jiajun Wu</a>, 
+              <a href="">Gordon Wetzstein</a>
+              <br>
+              <em>CVPR</em>, 2023
+              <br>
+              <a href="https://jryanshue.com/nfd/index.html">project page</a> /
+              <a href="https://arxiv.org/abs/2211.16677">arXiv</a>
+              <p></p>
+            </td>
+          </tr>		
 
 
+          <tr onmouseout="samurai_stop()" onmouseover="samurai_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='ada_image'>
+                  <img src='images/ada_gate.gif' width="180"></div>
+                <img src='images/ada_gate.gif' width="180">
+              </div>
+              <script type="text/javascript">
+                function samurai_start() {
+                  document.getElementById('ada_image').style.opacity = "1";
+                }
 
+                function samurai_stop() {
+                  document.getElementById('ada_image').style.opacity = "0";
+                }
+                samurai_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://imaging.cs.cmu.edu/adaptive_gating/">
+                <papertitle>Adaptive Gating for Single-Photon 3D Imaging</papertitle>
+              </a>
+              <br>
+              <strong>Ryan Po</strong>,
+              <a href="">Adithya Pediredla</a>, 
+              <a href="">Ioannis Gkioulekas</a>
+              <br>
+              <em>CVPR</em>, 2022 (Oral Presentation)
+              <br>
+              <a href="https://imaging.cs.cmu.edu/adaptive_gating/">project page</a> /
+              <a href="https://arxiv.org/abs/2111.15047">arXiv</a>
+              <p></p>
+            </td>
+          </tr>		
+        </tbody></table>
+
+				
+        
+					
+					
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:0px">
+              <br>
+              <p style="text-align:right;font-size:small;">
+                Website layout from <a href="https://github.com/jonbarron/jonbarron_website">here</a>.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
