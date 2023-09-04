@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instant Continual Learning of Neural Radiance Fields</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style = "font-size: 40px;">Instant Continual Learning of Neural Radiance Fields</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ryanpo.com">Ryan Po</a><sup></sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/leo-dong-b154a8186/">Zhengyang Dong</a><sup></sup>,</span>
+            <span class="author-block">
+              <a href="https://alexanderbergman7.github.io/">Alexander Bergman</a><sup></sup>,</span>
+            <span class="author-block">
+              <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a><sup></sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Stanford University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="static/pdf/icngp.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" style="overflow: hidden;">
+  <div class="container is-max-desktop" style="overflow: hidden;">
+    <div class="hero-body" style="overflow: hidden;">
+      <div class="video-wrapper">
+      <center>
+      <video id="teaser" autoplay muted loop playsinline width="100%"  controls>
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
+      </video>
+      </center>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style = "font-size: 25px;">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Neural radiance fields (NeRFs) have emerged as an effective method for novel-view synthesis and 3D scene reconstruction. However, conventional training methods require access to all training views during scene optimization. 
+              This assumption may be prohibitive in continual learning scenarios, where new data is acquired in a sequential manner and a continuous update of the NeRF is desired, as in automotive or remote sensing applications.
+              When naively trained in such a continual setting, traditional scene representation frameworks suffer from catastrophic forgetting, where previously learned knowledge is corrupted after training on new data. Prior works in alleviating forgetting with NeRFs suffer from low reconstruction quality and high latency, making them impractical for real-world application. We propose a continual learning framework for training NeRFs that leverages replay-based methods combined with a hybrid explicit--implicit scene representation. Our method outperforms previous methods in reconstruction quality when trained in a continual setting, while having the additional benefit of being an order of magnitude faster. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+    </section>
+    
+  <div></div>
+
+
+</section>
+
+
+
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style = "font-size: 25px;">Method</h2>
+        <div class="content has-text-justified">
+          <div class="content has-text-centered">
+            <img src="./static/images/method_incre.jpg" alt="Italian Trulli" width = "120%">
+      
+          </div>
+          <p>
+            Overview of our method. The scene representation is sequentially trained on sequentially acquired views. After each stage of training, a frozen copy of the scene parameters is stored. While optimizing for the next set of incoming images, the frozen network is queried to obtain pseudo ground truth values. The current network is trained on a mixed objective that minimizes photometric loss with respect to ground truth images from the current task, and pseudo ground truth values for previous tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style = "font-size: 25px;">Experimental Results</h2>
+        <div class="content has-text-justified">
+          <div class="content has-text-centered">
+            <img src="./static/images/results-incre.jpg" alt="Italian Trulli" width = "120%">
+      
+          </div>
+          <div class="content has-text-centered">
+            <img src="./static/videos/results_vid.gif" alt="Italian Trulli" width = "120%">
+      
+          </div>
+          <p>
+            Reconstructed views from a previously supervised (forgotten) task across different methods. Our method consistently outperforms all other baselines in visual quality, retaining high-frequency details for earlier tasks through the use of explicit features being an order of magnitude faster than the closest performing baseline (MEIL-NeRF).
+          </p>
+        </div>
+
+
+        <div class="content has-text-justified">
+          <div class="content has-text-centered">
+            <img src="./static/images/results-timed.jpg" alt="Italian Trulli" width = "120%">
+      
+          </div>
+          <p>
+            Reconstructed views from an earlier supervised (forgotten) task for our method and MEIL-NeRF trained for fixed times per task. Our method consistently outperforms MEIL-NeRF given equal time budget. With only 5s per task, our method already reconstructs the scene with reasonable fidelity, illustrating that our method is well-suited for real-time continual scene fitting.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style = "font-size: 25px;">NeRF Studio Integration</h2>
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+
+
+<section class="hero teaser" style="overflow: hidden;">
+  <div class="container is-max-desktop" style="overflow: hidden;">
+    <div class="hero-body" style="overflow: hidden;">
+      <div class="video-wrapper">
+      <center>
+      <video id="teaser" autoplay muted loop playsinline width="100%"  controls>
+        <source src="./static/videos/nerfstudio-cropped.mp4" type="video/mp4">
+      </video>
+      </center>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <center>
+          <p>
+            Website layout borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
