@@ -44,6 +44,43 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 				
       
+
+
+          <tr onmouseout="mira_stop()" onmouseover="mira_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='mira_image'>
+                  <img src='images/ortha.png' width="180"></div>
+                <img src='images/ortha.png' width="180">
+              </div>
+              <script type="text/javascript">
+                function mira_start() {
+                  document.getElementById('mira_image').style.opacity = "1";
+                }
+
+                function mira_stop() {
+                  document.getElementById('mira_image').style.opacity = "0";
+                }
+                mira_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="data/orthogonalAdaptation.pdf">
+                <papertitle>Orthogonal Adaptation for Modular Customization of Diffusion Models
+                </papertitle>
+              </a>
+              <br>
+              <strong>Ryan Po</strong>,
+               Guandao Yang,
+              Kfir Aberman,
+              Gordon Wetzstein
+              <br>
+              <em>In submission</em>
+              <br>
+              <a href="https://ryanpo.com/ortha/orthogonal_adaptation.pdf">pdf</a>
+              <p></p>
+            </td>
+          </tr>		
 		  
         <tr onmouseout="mira_stop()" onmouseover="mira_start()">
             <td style="padding:20px;width:25%;vertical-align:middle">
