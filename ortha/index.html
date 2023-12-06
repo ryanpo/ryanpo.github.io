@@ -11,6 +11,8 @@
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -57,7 +59,7 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="static/pdf/orth.pdf"
+                <a href="static/pdfs/ortha.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -88,6 +90,9 @@
       <video id="teaser" autoplay muted loop playsinline width="100%" controls>
         <source src="./static/videos/teaser.mp4" type="video/mp4">
       </video>
+      <h2 class="subtitle has-text-centered">
+        Instantly merge independently trained LoRAs with minimal loss in concept fidelity. 
+      </h2>
       </center>
       </div>
     </div>
@@ -96,61 +101,29 @@
 
 
 
-
-
 <section class="section">
+
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-
-    <div class="container is-max-desktop">
-      <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
-        <div>
-          <h2 class="title is-3" style = "font-size: 25px;">Abstract</h2>
-          <div class="content has-text-justified">
-            
-            <p>
-              Customization techniques for text-to-image models have paved the way for a wide range of previously unattainable applications, enabling the generation of specific concepts across diverse contexts and styles. While existing methods facilitate high-fidelity customization for individual concepts or a limited, pre-defined set of them, they fall short of achieving scalability, where a single model can seamlessly render countless concepts. In this paper, we address a new problem called Modular Customization, with the goal of efficiently merging customized models that were fine-tuned independently for individual concepts. This allows the merged model to jointly synthesize concepts in one image without compromising fidelity or incurring any additional computational costs.
-            </p>
-            <p>
-              To address this problem, we introduce Orthogonal Adaptation, a method designed to encourage the customized models, which do not have access to each other during fine-tuning, to have orthogonal residual weights. This ensures that during inference time, the customized models can be summed with minimal interference. 
-            </p>
-          </div>
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div>
+        <h2 class="title is-3" style = "font-size: 25px;">Abstract</h2>
+        <div class="content has-text-justified">
           <div class="content has-text-centered">
             <img src="./static/images/mod-cus.png" alt="Italian Trulli" width = "120%">
       
           </div>
-
-
-          <!-- <div style="width: 30%; float:left">
-            <img src="./static/images/mod-cus.png" alt="Italian Trulli" width = "100%">
-          </div>
-          <div style="width: 2%; float: left">
-            &nbsp
-          </div>
-          <div style="width: 68%; float:left">
-          <div class="content has-text-justified">
-            <p>
-              Customization techniques for text-to-image models have paved the way for a wide range of previously unattainable applications, enabling the generation of specific concepts across diverse contexts and styles. While existing methods facilitate high-fidelity customization for individual concepts or a limited, pre-defined set of them, they fall short of achieving scalability, where a single model can seamlessly render countless concepts. In this paper, we address a new problem called Modular Customization, with the goal of efficiently merging customized models that were fine-tuned independently for individual concepts. This allows the merged model to jointly synthesize concepts in one image without compromising fidelity or incurring any additional computational costs.
-            </p>
-            <p>
-              To address this problem, we introduce Orthogonal Adaptation, a method designed to encourage the customized models, which do not have access to each other during fine-tuning, to have orthogonal residual weights. This ensures that during inference time, the customized models can be summed with minimal interference. 
-            </p>
-          </div>
-        </div> -->
-        </div>
+          <p>
+            Customization techniques for text-to-image models have paved the way for a wide range of previously unattainable applications, enabling the generation of specific concepts across diverse contexts and styles. While existing methods facilitate high-fidelity customization for individual concepts or a limited, pre-defined set of them, they fall short of achieving scalability, where a single model can seamlessly render countless concepts. In this paper, we address a new problem called Modular Customization, with the goal of efficiently merging customized models that were fine-tuned independently for individual concepts. This allows the merged model to jointly synthesize concepts in one image without compromising fidelity or incurring any additional computational costs.
+          </p>
+          <p>
+            To address this problem, we introduce Orthogonal Adaptation, a method designed to encourage the customized models, which do not have access to each other during fine-tuning, to have orthogonal residual weights. This ensures that during inference time, the customized models can be summed with minimal interference. 
+          </p></div>
       </div>
-      <!--/ Abstract. -->
     </div>
-    </section>
-    
-  <div></div>
-
-
+    <!--/ Method. -->
+  </div>
 </section>
-
 
 <section class="section">
 
@@ -174,73 +147,40 @@
 </section>
 
 
+
 <section class="section">
+
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-
-    <div class="container is-max-desktop">
-      <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
-        <div>
-          <h2 class="title is-3" style = "font-size: 25px;">Problem: LoRA Crosstalk</h2>
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div>
+        <h2 class="title is-3" style = "font-size: 25px;">Problem: LoRA Crosstalk</h2>
+        <div class="content has-text-justified">
           <div class="content has-text-centered">
             <img src="./static/images/crosstalk_supp.png" alt="Italian Trulli" width = "120%">
       
           </div>
-          <div class="content has-text-justified">
+          <p>
+            LoRAs fine-tuned under conventional methods interfere with one another when combined naively, this effect is most noticeable when LoRA weights are similar. We refer to this effect as "crosstalk". 
+              
+            The effects of crosstalk lead to loss of identity for customized concepts as observed on the results to the right. 
             
-            <p>LoRAs fine-tuned under conventional methods interfere with one another when combined naively, this effect is most noticeable when LoRA weights are similar. We refer to this effect as "crosstalk". 
-              
-              The effects of crosstalk lead to loss of identity for customized concepts as observed on the results to the right. 
-              
-              The goal of our method is to modify the fine-tuning regime such that resulting LoRAs have minimal crosstalk. 
-              
-              A key observation from our experiments is that <b><em> crosstalk is minimized when LoRA weights are orthogonal to each other</em></b>. 
+            The goal of our method is to modify the fine-tuning regime such that resulting LoRAs have minimal crosstalk. 
+            
+            A key observation from our experiments is that <b><em> crosstalk is minimized when LoRA weights are orthogonal to each other</em></b>. 
 
-              Measuring crosstalk through the norm of the product between two LoRA weights, our method results in lower crosstalk between independently trained LoRAs. 
-              
-              Combined via the same method, our training regime leads to less crosstalk and therefore better identity preservation after merging.            
-             </p>
+            Measuring crosstalk through the norm of the product between two LoRA weights, our method results in lower crosstalk between independently trained LoRAs. 
+            
+            Combined via the same method, our training regime leads to less crosstalk and therefore better identity preservation after merging.            
+           </p>
           </div>
-          
-          <!-- <div style="width: 52%; float:left">
-          <div class="content has-text-justified">
-            <p>
-              LoRAs fine-tuned under conventional methods interfere with one another when combined naively, this effect is most noticeable when LoRA weights are similar. We refer to this effect as "crosstalk". 
-              
-              The effects of crosstalk lead to loss of identity for customized concepts as observed on the results to the right. 
-              
-              The goal of our method is to modify the fine-tuning regime such that resulting LoRAs have minimal crosstalk. 
-              
-              A key observation from our experiments is that <b><em> crosstalk is minimized when LoRA weights are orthogonal to each other</em></b>. 
-
-              Measuring crosstalk through the norm of the product between two LoRA weights, our method results in lower crosstalk between independently trained LoRAs. 
-              
-              Combined via the same method, our training regime leads to less crosstalk and therefore better identity preservation after merging.            </p>
-  
-          </div>
-          
-          
-          
-        </div>
-        <div style="width: 2%; float: left">
-          &nbsp
-        </div>
-        <div style="width: 46%; float:left">
-          <img src="./static/images/crosstalk_supp-1.png" alt="Italian Trulli" width = "100%">
-        </div>
-        </div> -->
       </div>
-      <!--/ Abstract. -->
     </div>
-    </section>
-    
-  <div></div>
-
-
+    <!--/ Method. -->
+  </div>
 </section>
+
+
 
 
 <section class="section">
@@ -322,12 +262,13 @@
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <center>
+
           <p>
-            Website layout borrowed from <a
-              href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
-        </center>
+
         </div>
       </div>
     </div>
