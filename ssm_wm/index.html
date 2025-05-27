@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Long-Context State-Space Video World Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Long-Context State-Space Video World Models</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    /* Make text narrower and center it */
+    .wide-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .narrow-container {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    /* Global font size increase */
+    body {
+      font-size: 15.7px;
+      line-height: 1.5;
+    }
+
+    h1.title {
+      font-size: 38px !important;
+    }
+
+    h2.title {
+      font-size: 32px !important;
+    }
+    
+    h2.subtitle {
+      font-size: 20px !important;
+    }
+
+    .publication-authors, .publication-links {
+      font-size: 20px;
+    }
+
+    .button {
+      font-size: 18px;
+    }
+
+    .hero.teaser .hero-body {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+<section class="hero" style="padding-top:  10px;">
+  <div class="hero-body">
+    <div class="wide-container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title publication-title">Long-Context State-Space Video World Models</h1>
+
+          <div class="publication-authors">
+            <span class="author-block"><a href="https://ryanpo.com">Ryan Po</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://yotamnitzan.github.io/">Yotam Nitzan</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://richzhang.github.io/">Richard Zhang</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=GkCmZ18AAAAJ&hl=en">Berlin Chen</a><sup>2</sup>,</span>
+          </div>
+          <div class="publication-authors">
+            <span class="author-block"><a href="https://tridao.me/">Tri Dao</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://research.adobe.com/person/eli-shechtman/">Eli Shechtman</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://www.xunhuang.me/">Xun Huang</a><sup>3</sup></span>
+          </div>
+
+          <div class="publication-authors">
+            <span class="author-block"><sup>1</sup>Stanford University,</span>
+            <span class="author-block"><sup>2</sup>Princeton University,</span>
+            <span class="author-block"><sup>3</sup>Adobe Research</span>
+          </div>
+
+          <div class="publication-links">
+            <!-- <span class="link-block">
+              <a href="./static/pdfs/your_paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span> -->
+            <span class="link-block">
+              <a href="https://www.arxiv.org/abs/2505.20171" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" style="overflow: hidden; padding: 0;">
+  <div class="hero-body" style="padding: 0;">
+    <div class="video-wrapper has-text-centered" style="width: 100%;">
+      <video id="replay-video"
+             controls
+             muted
+             preload
+             playsinline
+             style="width: 60%; max-height: 380px; object-fit: cover;">
+        <source src="./static/videos/tasks_final.mp4" type="video/mp4">
+      </video>
+    </div>
+    <h2 class="subtitle has-text-centered">
+      State-space models enable autoregressive video generation with consistent memory.
+    </h2>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Video diffusion models have recently shown promise for world modeling through autoregressive frame prediction conditioned on actions.
+            However, they struggle to maintain long-term memory due to the high computational cost associated with processing extended sequences in attention layers.
+            To overcome this limitation, we propose a novel architecture leveraging state-space models (SSMs) to extend temporal memory without compromising computational efficiency.
+            Unlike previous approaches that retrofit SSMs for non-causal vision tasks, our method fully exploits the inherent advantages of SSMs in causal sequence modeling.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Hybrid SSM Architecture</h2>
+        <div class="content has-text-justified">
+          <figure class="image" style="margin-top: 1rem; text-align: center;">
+            <img src="./static/images/architecture.png" alt="Hybrid SSM Architecture Diagram" style="width: 100%; height: auto;">
+          </figure>
+          <p>
+            Central to our design is a block-wise SSM scanning scheme, which strategically trades off spatial consistency for extended temporal memory,
+            combined with dense local attention to ensure coherence between consecutive frames.
+            We evaluate the long-term memory capabilities of our model through spatial retrieval and reasoning tasks over extended horizons.
+            Experiments on Memory Maze and Minecraft datasets demonstrate that our approach surpasses baselines in preserving long-range memory,
+            while maintaining practical inference speeds suitable for interactive applications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Supplementary: Minecraft Section -->
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Results</h2>
+
+        <h3 class="subtitle is-4">Long-range Action-conditioned Video Generation</h3>
+        <div class="content has-text-justified">
+          <p>
+            Trained on the TECO Minecraft dataset, we pass 25 frames as context to our model and generate 125 more frames given a random sequence of actions.
+            For comparison, we include results from DFoT on the right. Context frames are shown with a red border. Our model successfully generates videos of high fidelity
+            across long time horizons.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column">
+            <h4 class="subtitle is-5 has-text-centered">Our Results</h4>
+            <div class="content has-text-centered">
+              <div style="width: 100%; position: relative; padding-bottom: 100%;">
+                <video 
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+                  controls muted preload playsinline>
+                  <source src="./static/videos/ours_mc.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <h4 class="subtitle is-5 has-text-centered">DFoT Results</h4>
+            <div class="content has-text-centered">
+              <div style="width: 100%; position: relative; padding-bottom: 100%;">
+                <video 
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+                  controls muted preload playsinline>
+                  <source src="./static/videos/dfot_results.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subtitle is-4">Long-term Memory Capabilities</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our method displays long-term memory capabilities evaluated through two separate tasks.
+            The spatial reasoning task involves providing the model 
+            with a random agent trajectory and observations as context.
+            The model is then tasked to reconstruct the continuation of this trajectory. 
+            Assuming the model has been given enough context such 
+            that the entire environment has been committed into memory, the model 
+            should reconstruct every observation along the continued trajectory.
+          </p>
+          <p>
+            The spatial retrieval task involves providing the model with a random agent trajectory and the corresponding observations as context, 
+            then tasking the model to backtrack through the exact sequence of actions to the agent's starting position. Given the scene is static, 
+            the generated sequence should reverse the context frames.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column">
+            <h4 class="subtitle is-5 has-text-centered">Reasoning Task Results</h4>
+            <div class="content has-text-centered">
+              <video controls muted preload playsinline style="width: 100%;">
+                <source src="./static/videos/reasoning_spread.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <div class="column">
+            <h4 class="subtitle is-5 has-text-centered">Retrieval Task Results</h4>
+            <div class="content has-text-centered">
+              <video controls muted preload playsinline style="width: 100%;">
+                <source src="./static/videos/retrieval_spread.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            Even over long-horizons, our method outperforms relevant baselines in 
+            memory-related metrics.
+          </p>
+        </div>
+
+        <figure class="image" style="margin-top: 1rem;">
+          <img src="./static/images/graph.png" 
+               alt="Hybrid SSM Architecture Diagram" 
+               style="width: 70%; height: auto; display: block; margin: 0 auto;">
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="narrow-container content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{po2025longcontextstatespacevideoworld,
+  title={Long-Context State-Space Video World Models},
+  author={Ryan Po and Yotam Nitzan and Richard Zhang and Berlin Chen and Tri Dao and Eli Shechtman and Gordon Wetzstein and Xun Huang},
+  year={2025},
+  eprint={2505.20171},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2505.20171}
+}</code></pre>
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="narrow-container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+            adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+              Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
