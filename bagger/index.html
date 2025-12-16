@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="BAgger: Backwards Aggregation for Mitigating Drift in Autoregressive Video Diffusion Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BAgger: Backwards Aggregation for Mitigating Drift in Autoregressive Video Diffusion Models</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    /* Make text narrower and center it */
+    .wide-container {
+      width: 70vw;      /* 70% of viewport width */
+      margin: 0 auto;
+    }
+
+    .narrow-container {
+      width: 55vw;      /* narrower block */
+      margin: 0 auto;
+    }
+
+    .teaser-frame {
+      width: 60vw;      /* match wide-container */
+      margin: 0 auto;
+      aspect-ratio: 1131 / 354;
+      overflow: hidden;
+      border-radius: 0px;
+      background: #000;
+    }
+
+    /* Global font size increase */
+    body {
+      font-size: 15.7px;
+      line-height: 1.5;
+    }
+
+    h1.title {
+      font-size: 38px !important;
+    }
+
+    h2.title {
+      font-size: 32px !important;
+    }
+
+    h2.subtitle {
+      font-size: 20px !important;
+    }
+
+    .publication-authors, .publication-links {
+      font-size: 20px;
+    }
+
+    .button {
+      font-size: 18px;
+    }
+
+    .hero.teaser .hero-body {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .conference-tag {
+      margin-top: 0.25rem;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+    }
+
+
+    .teaser-frame > video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* crops evenly without bars */
+      display: block;    /* removes inline gap issues */
+    }
+
+    .wide-results-container {
+      width: 80vw;        /* wider than your narrow container */
+      max-width: 1200px;  /* optional cap for big screens */
+      margin: 2rem auto 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .wide-results-container {
+        width: 90vw;      /* almost full width on mobile */
+      }
+    }
+
+    .wide-baselines-container h4.subtitle {
+      margin-bottom: 0.25rem !important;   /* default is ~1.5rem */
+    }
+
+    .wide-baselines-container .columns {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .wide-baselines-container .column {
+      padding-left: 0.1rem !important;   /* reduce column padding */
+      padding-right: 0.1rem !important;
+    }
+
+  </style>
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll("video");
+
+    videos.forEach(video => {
+      // Remove native looping so we can manually control it
+      video.removeAttribute("loop");
+
+      video.addEventListener("ended", () => {
+        // Pause on last frame (already ended)
+        // Wait 5 seconds, then restart
+        setTimeout(() => {
+          video.currentTime = 0;
+          video.play();
+        }, 5000); // 5 seconds
+      });
+    });
+  });
+  </script>
+
+
+<body>
+
+
+<section class="hero" style="padding-top:  10px;">
+  <div class="hero-body">
+    <div class="wide-container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title publication-title">
+            BAgger: Backwards Aggregation for<br>
+            Mitigating Drift in Autoregressive Video Diffusion Models
+          </h1>
+
+          <div class="publication-authors">
+            <span class="author-block"><a href="https://ryanpo.com">Ryan Po</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://ericryanchan.github.io/">Eric Ryan Chan</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://changan.io/">Changan Chen</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a><sup>1</sup></span>
+          </div>
+
+          <div class="publication-authors">
+            <span class="author-block"><sup>1</sup>Stanford University</span>
+          </div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="./static/pdfs/bagger.pdf" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/2512.12080" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a class="external-link button is-normal is-rounded is-dark" disabled>
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code (Coming Soon)</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" style="padding:0;">
+  <div class="hero-body" style="padding:0;">
+    <div class="teaser-frame">
+      <video
+        id="replay-video"
+        controls
+        muted
+        preload
+        playsinline
+        loop
+        autoplay
+      >
+        <source src="./static/videos/web_teaser_short.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+      BAgger reduces exposure bias and stabilizes long video generation compared to previous AR methods.
+    </h2>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Autoregressive video models are promising for world modeling via next-frame prediction, but they suffer from exposure bias: a mismatch between training on clean contexts and inference on self-generated frames, causing errors to compound and quality to drift over time.
+            We introduce Backwards Aggregation (BAgger), a self-supervised scheme that constructs corrective trajectories from the model's own rollouts, teaching it to recover from its mistakes.
+            Unlike prior approaches that rely on few-step distillation and distribution-matching losses, which can hurt quality and diversity, BAgger trains with standard score or flow matching objectives, avoiding large teachers and long-chain backpropagation through time.
+            We instantiate BAgger on causal diffusion transformers and evaluate on text-to-video, video extension, and multi-prompt generation, observing more stable long-horizon motion and better visual consistency with reduced drift.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Rerversed Rollouts as Corrective Trajectories</h2>
+        <div class="content has-text-justified">
+          <figure class="image" style="margin-top: 1rem; text-align: center;">
+            <img src="./static/images/reversal-1.png" alt="reversed rollouts" style="width: 100%; height: auto;">
+          </figure>
+          <p>
+            In standard autoregressive video diffusion, exposure bias creates a mismatch between training on clean contexts and inferring on self-generated frames.
+            Small errors accumulate, causing generations to drift away from the real data distribution.
+            Our key idea is to reverse the model's own rollouts: given a potentially drifted clip, we treat its time-reversed version as a corrective trajectory that demonstrates how to recover from corrupted contexts.
+            This turns the model's own mistakes into supervision, without requiring any external expert or teacher network.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <!-- Narrow intro -->
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Applications</h2>
+        <div class="content has-text-justified">
+          <p>
+            BAgger improves long-horizon behavior across a range of settings, including ultra long video generation,
+            video extension from existing clips, and multi-prompt generation with dynamic scene changes.
+            Our method is able to generate stable text-to-video generations for lengths longer than 4 minutes.
+            Input frames for video extension results are highlighted by a red border.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wide 3-column videos -->
+  <div class="wide-results-container">
+    <div class="columns is-centered">
+      <!-- Ultra Long Video Generation -->
+      <div class="column">
+        <h4 class="subtitle is-5 has-text-centered">Ultra long video generation</h4>
+        <div class="content has-text-centered">
+          <div style="width: 100%; position: relative; padding-bottom: 68.1818%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              id="replay-video"
+              controls
+              muted
+              preload
+              playsinline
+              loop
+              autoplay>
+              <source src="./static/videos/long_again_cropped.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Extension -->
+      <div class="column">
+        <h4 class="subtitle is-5 has-text-centered">Video extension</h4>
+        <div class="content has-text-centered">
+          <div style="width: 100%; position: relative; padding-bottom: 68.1818%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              id="replay-video"
+              controls
+              muted
+              preload
+              playsinline
+              loop
+              autoplay>
+              <source src="./static/videos/extension_cropped.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-Prompt Generation -->
+      <div class="column">
+        <h4 class="subtitle is-5 has-text-centered">Multi-prompt generation</h4>
+        <div class="content has-text-centered">
+          <div style="width: 100%; position: relative; padding-bottom: 68.1818%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              id="replay-video"
+              controls
+              muted
+              preload
+              playsinline
+              loop
+              autoplay>
+              <source src="./static/videos/multi_cropped.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Baseline Comparisons</h2>
+        <div class="content has-text-justified">
+          <p>
+            We compare BAgger against several autoregressive video diffusion baselines,
+            visualizing long-horizon rollouts for each method side by side.
+            Our method produces maintains high frame-wise quality and maintains diverse motions across long-horizon generations.
+            Other AR diffusion methods suffer from rapidly decaying frame-wise quality, usually in the form of over saturation.
+            Self Forcing begins with high frame-wise quality, as it is distilled from a 14B base model, but motion diversity and frame-wise quality both degrade as generation length goes on.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wide 5-column baseline grid -->
+  <div class="wide-baselines-container">
+    <div class="columns is-centered">
+
+      <!-- Baseline 1 -->
+      <div class="column">
+        <h4 class="subtitle is-6 has-text-centered">Diffusion Forcing</h4>
+        <div class="content has-text-centered">
+
+          <!-- Top video -->
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%; margin-bottom: 0.75rem;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/goat/base.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- Bottom video -->
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/elephant/base_27.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Baseline 2 -->
+      <div class="column">
+        <h4 class="subtitle is-6 has-text-centered">History Guidance</h4>
+        <div class="content has-text-centered">
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%; margin-bottom: 0.75rem;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/goat/hg.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/elephant/hg_27.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Baseline 3 -->
+      <div class="column">
+        <h4 class="subtitle is-6 has-text-centered">SkyReels V2</h4>
+        <div class="content has-text-centered">
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%; margin-bottom: 0.75rem;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/goat/skyreels.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/elephant/skyreels_27.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Baseline 4 -->
+      <div class="column">
+        <h4 class="subtitle is-6 has-text-centered">Self Forcing</h4>
+        <div class="content has-text-centered">
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%; margin-bottom: 0.75rem;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/goat/self_forcing.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/elephant/self_forcing_27.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BAgger (ours) -->
+      <div class="column">
+        <h4 class="subtitle is-6 has-text-centered">BAgger (Ours)</h4>
+        <div class="content has-text-centered">
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%; margin-bottom: 0.75rem;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/goat/ours.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+            <video
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+              controls muted preload playsinline loop autoplay>
+              <source src="./static/videos/baselines/elephant/ours_27.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Effect over Multiple BAgger Rounds</h2>
+        <div class="content has-text-justified">
+          <p>
+            We ablate across multiple rounds of the BAgger algorithm to study its effect on long-horizon generation.
+            A single round is insufficient to capture the full distribution of drifted states and can even degrade performance relative to training on seed data alone.
+            Performance improves steadily over multiple rounds.
+            The figure below visualizes examples from each round, sampling three 30-second generations per model and showing the final frame for each sample.
+            The seed-only model exhibits severe over-saturation, while one round of BAgger over-corrects toward under-saturated outputs.
+            By the second round, saturation and contrast stabilize, producing more natural color balance, and the third round yields further improvements in detail and temporal consistency.
+          </p>
+          <figure class="image" style="margin-top: 1rem; text-align: center;">
+            <img src="./static/images/rounds.png" alt="Effect over multiple BAgger rounds" style="width: 70%; height: auto; display: block; margin: 0 auto;">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="narrow-container content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{po2025baggerbackwardsaggregationmitigating,
+  title={BAgger: Backwards Aggregation for Mitigating Drift in Autoregressive Video Diffusion Models},
+  author={Ryan Po and Eric Ryan Chan and Changan Chen and Gordon Wetzstein},
+  year={2025},
+  eprint={2512.12080},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2512.12080}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="narrow-container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+            adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+              Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
