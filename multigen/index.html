@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MultiGen: Level-Design for Editable Multiplayer Worlds in Diffusion Game Engines">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Integrating Level-Design for Editable, Shared Worlds in Diffusion Game Engines</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    /* Make text narrower and center it */
+    .wide-container {
+      width: 55vw;      /* 55% of viewport width */
+      margin: 0 auto;
+    }
+
+    .narrow-container {
+      width: 40vw;      /* narrower block */
+      margin: 0 auto;
+    }
+
+    .teaser-frame {
+      width: 42vw;
+      margin: 0 auto;
+    }
+
+    /* Global font size increase */
+    body {
+      font-size: 15.7px;
+      line-height: 1.5;
+    }
+
+    h1.title {
+      font-size: 38px !important;
+    }
+
+    h2.title {
+      font-size: 32px !important;
+    }
+
+    h2.subtitle {
+      font-size: 20px !important;
+    }
+
+    .publication-authors, .publication-links {
+      font-size: 20px;
+    }
+
+    .button {
+      font-size: 18px;
+    }
+
+    .hero.teaser .hero-body {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .conference-tag {
+      margin-top: 0.25rem;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+    }
+
+
+    .teaser-frame > video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .wide-results-container {
+      width: 80vw;        /* wider than your narrow container */
+      max-width: 1200px;  /* optional cap for big screens */
+      margin: 2rem auto 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .wide-results-container {
+        width: 90vw;      /* almost full width on mobile */
+      }
+    }
+
+    .wide-baselines-container h4.subtitle {
+      margin-bottom: 0.25rem !important;   /* default is ~1.5rem */
+    }
+
+    .wide-baselines-container .columns {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .wide-baselines-container .column {
+      padding-left: 0.1rem !important;   /* reduce column padding */
+      padding-right: 0.1rem !important;
+    }
+
+  </style>
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll("video");
+
+    videos.forEach(video => {
+      // Remove native looping so we can manually control it
+      video.removeAttribute("loop");
+
+      video.addEventListener("ended", () => {
+        // Pause on last frame (already ended)
+        // Wait 5 seconds, then restart
+        setTimeout(() => {
+          video.currentTime = 0;
+          video.play();
+        }, 5000); // 5 seconds
+      });
+    });
+  });
+  </script>
+
+
+<body>
+
+
+<section class="hero" style="padding-top:  10px;">
+  <div class="hero-body">
+    <div class="wide-container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title publication-title">
+            Integrating Level-Design for Editable, Shared<br>
+            Worlds in Diffusion Game Engines
+          </h1>
+
+          <div class="publication-authors">
+            <span class="author-block"><a href="https://ryanpo.com">Ryan Po</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://junhaozhang98.github.io/">David Junhao Zhang</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://amirhertz.github.io/">Amir Hertz</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a><sup>*1</sup>,</span>
+            <span class="author-block"><a href="https://nealwadhwa.com/">Neal Wadhwa</a><sup>*2</sup>,</span>
+            <span class="author-block"><a href="https://natanielruiz.github.io/">Nataniel Ruiz</a><sup>*2</sup></span>
+          </div>
+
+          <div class="publication-authors">
+            <span class="author-block"><sup>1</sup>Stanford University,</span>
+            <span class="author-block"><sup>2</sup>Google</span>
+          </div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="./static/pdfs/gamengen_map.pdf" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a class="external-link button is-normal is-rounded is-dark" disabled>
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" style="padding:0;">
+  <div class="hero-body" style="padding:0;">
+    <div class="teaser-frame">
+      <video
+        id="replay-video"
+        controls
+        muted
+        preload
+        playsinline
+        loop
+        autoplay
+      >
+        <source src="./static/videos/multi_teaser_draft.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+      Level design via editable memory enables user control over environment structure and real-time multiplayer rollouts.
+    </h2>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Video world models have shown immense promise for interactive simulation and entertainment, but current systems still struggle with two important aspects of interactivity: user control over the environment for reproducible, editable experiences, and shared inference where players hold influence over a common world. To address these limitations, we introduce an explicit external memory into the system, a persistent state operating independent of the model's context window, that is continually updated by user actions and queried throughout the generation roll-out. Unlike conventional diffusion game engines that operate as next-frame predictors, our approach decomposes generation into Memory, Observation, and Dynamics modules. This design gives users direct, editable control over environment structure via an editable memory representation, and it naturally extends to real-time multiplayer rollouts with coherent viewpoints and consistent cross-player interactions.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Method Overview</h2>
+        <div class="content has-text-justified">
+          <figure class="image" style="margin-top: 1rem; text-align: center;">
+            <img src="./static/images/method.png" alt="method overview" style="width: 100%; height: auto;">
+          </figure>
+          <p>
+            We introduce an explicit external memory and factor the diffusion game engine into three modules: <b>Memory</b> (map geometry and pose), <b>Observation</b> (next-frame generation conditioned on history and memory readouts), and <b>Dynamics</b> (pose update for state progression). The memory module maintains a persistent state including the minimap and agent states. The observation module generates the next visual observation conditioned on the memory readout and recent history. The dynamics module updates state given actions and observations. This separation makes long-horizon structure easier to maintain and, critically, enables multiplayer in a natural way: multiple agents act on the same shared memory, and the model can render coherent observations from one or more viewpoints with interaction effects between players.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Level Design via Editable Memory</h2>
+        <div class="content has-text-justified">
+          <figure class="image" style="margin-bottom: 1rem; text-align: center;">
+            <img src="./static/images/level_design_method.png" alt="level design via editable memory" style="width: 100%; height: auto;">
+          </figure>
+          <p>
+            A primary advantage of an external memory is that it provides a direct handle for modifying the underlying structure of the world. By defining the world explicitly with coarse map structures, users can directly influence the structure of the environment before inference even begins. Users define a level through coarse 2D geometry. During inference, the diffusion model generates first-person observations consistent with the top-down level layout.
+          </p>
+          <div style="margin-top: 1rem; text-align: center; overflow: hidden;">
+            <video
+              style="width: 95%; margin-top: -5%; margin-bottom: -5%;"
+              controls
+              muted
+              preload
+              playsinline
+              loop
+              autoplay>
+              <source src="./static/videos/level_design_demo.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Multiplayer Interaction</h2>
+        <div class="content has-text-justified">
+          <p>
+            The external memory not only enables editability of the environment, it also naturally extends to act as a shared state that multiple agents can condition on and update during generated roll-outs. In our multiplayer setting, the shared world state is represented explicitly by the external memory: the static map layout together with the set of active player poses. Generation is distributed: each player runs their own copy of the Observation and Dynamics modules, while all players read from and write to the same shared memory. This distributed design supports an arbitrary number of players without changing the model interface, and runs at approximately 20 FPS for real-time interactive multiplayer experiences.
+          </p>
+          <figure class="image" style="margin-top: 1rem; text-align: center;">
+            <img src="./static/images/multiplayer_method.png" alt="multiplayer interaction" style="width: 100%; height: auto;">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="narrow-container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title">Real-Time Multiplayer Gameplay</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our method naturally supports an arbitrary number of players without requiring any architectural changes. Because each player runs their own Observation and Dynamics modules while sharing a common external memory, adding more players simply means running additional instances that read from and write to the same shared state. Furthermore, our method can sustain real-time multiplayer gameplay for extremely long time horizons. Below we show a timelapse of 30 minutes of 4-player gameplay, demonstrating the stability and consistency of our approach over extended play sessions.
+          </p>
+          <div style="margin-top: 1rem; text-align: center;">
+            <video
+              style="width: 100%; height: auto;"
+              controls
+              muted
+              preload
+              playsinline
+              loop
+              autoplay>
+              <source src="./static/videos/timelapse.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="narrow-container content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{po2025leveldesign,
+  title={Integrating Level-Design for Editable, Shared Worlds in Diffusion Game Engines},
+  author={Ryan Po and David Junhao Zhang and Amir Hertz and Gordon Wetzstein and Neal Wadhwa and Nataniel Ruiz},
+  year={2025},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="narrow-container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+            adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+              Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
