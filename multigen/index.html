@@ -23,113 +23,28 @@
   <script src="./static/js/index.js"></script>
 
   <style>
-    /* Make text narrower and center it */
-    .wide-container {
-      width: 55vw;      /* 55% of viewport width */
-      margin: 0 auto;
-    }
-
-    .narrow-container {
-      width: 40vw;      /* narrower block */
-      margin: 0 auto;
-    }
-
-    .teaser-frame {
-      width: 42vw;
-      margin: 0 auto;
-    }
-
-    /* Global font size increase */
-    body {
-      font-size: 15.7px;
-      line-height: 1.5;
-    }
-
-    h1.title {
-      font-size: 38px !important;
-    }
-
-    h2.title {
-      font-size: 32px !important;
-    }
-
-    h2.subtitle {
-      font-size: 20px !important;
-    }
-
-    .publication-authors, .publication-links {
-      font-size: 20px;
-    }
-
-    .button {
-      font-size: 18px;
+    .container {
+      max-width: 960px;
     }
 
     .hero.teaser .hero-body {
       padding-top: 0px;
-      padding-bottom: 0px;
+      padding-bottom: 3rem;
     }
 
-    .conference-tag {
-      margin-top: 0.25rem;
-      letter-spacing: 0.02em;
-      font-weight: 600;
+    .teaser-video {
+      max-width: 960px;
+      margin: 0 auto;
     }
 
-
-    .teaser-frame > video {
+    .teaser-video video {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    .wide-results-container {
-      width: 80vw;        /* wider than your narrow container */
-      max-width: 1200px;  /* optional cap for big screens */
-      margin: 2rem auto 0 auto;
-    }
-
-    @media (max-width: 768px) {
-      .wide-container {
-        width: 90vw;
-      }
-
-      .narrow-container {
-        width: 90vw;
-      }
-
-      .teaser-frame {
-        width: 90vw;
-      }
-
-      .wide-results-container {
-        width: 95vw;
-      }
-
-      h1.title {
-        font-size: 24px !important;
-      }
-
-      h2.title {
-        font-size: 20px !important;
-      }
-
-      .publication-authors, .publication-links {
-        font-size: 16px;
-      }
-    }
-
-    .wide-baselines-container h4.subtitle {
-      margin-bottom: 0.25rem !important;   /* default is ~1.5rem */
-    }
-
-    .wide-baselines-container .columns {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
-    .wide-baselines-container .column {
-      padding-left: 0.1rem !important;   /* reduce column padding */
-      padding-right: 0.1rem !important;
+    .publication-authors {
+      font-size: 1.25rem;
     }
 
   </style>
@@ -161,12 +76,11 @@
 
 <section class="hero" style="padding-top:  10px;">
   <div class="hero-body">
-    <div class="wide-container">
+    <div class="container is-max-desktop">
       <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title publication-title">
-            MultiGen: Level-Design for Editable Multiplayer <br>
-            Worlds in Diffusion Game Engines
+        <div class="column is-full-width has-text-centered">
+          <h1 class="title is-2 publication-title">
+            MultiGen: Level-Design for Editable Multiplayer Worlds in Diffusion Game Engines
           </h1>
 
           <div class="publication-authors">
@@ -206,32 +120,34 @@
 
 <section class="hero teaser" style="padding:0;">
   <div class="hero-body" style="padding:0;">
-    <div class="teaser-frame">
-      <video
-        id="replay-video"
-        controls
-        muted
-        preload
-        playsinline
-        loop
-        autoplay
-      >
-        <source src="./static/videos/multi_teaser_draft.mp4" type="video/mp4">
-      </video>
-    </div>
+    <div class="container is-max-desktop">
+      <div class="teaser-video">
+        <video
+          id="replay-video"
+          controls
+          muted
+          preload
+          playsinline
+          loop
+          autoplay
+        >
+          <source src="./static/videos/multi_teaser_draft.mp4" type="video/mp4">
+        </video>
+      </div>
 
-    <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-      Level design via editable memory enables user control over environment structure and real-time multiplayer rollouts.
-    </h2>
+      <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+        Level design via editable memory enables user control over environment structure and real-time multiplayer rollouts.
+      </h2>
+    </div>
   </div>
 </section>
 
 
 <section class="section">
-  <div class="narrow-container">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title">Abstract</h2>
+      <div class="column is-full-width">
+        <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
             Video world models have shown immense promise for interactive simulation and entertainment, but current systems still struggle with two important aspects of interactivity: user control over the environment for reproducible, editable experiences, and shared inference where players hold influence over a common world. To address these limitations, we introduce an explicit external memory into the system, a persistent state operating independent of the model's context window, that is continually updated by user actions and queried throughout the generation roll-out. Unlike conventional diffusion game engines that operate as next-frame predictors, our approach decomposes generation into Memory, Observation, and Dynamics modules. This design gives users direct, editable control over environment structure via an editable memory representation, and it naturally extends to real-time multiplayer rollouts with coherent viewpoints and consistent cross-player interactions.
@@ -245,10 +161,10 @@
 
 
 <section class="section">
-  <div class="narrow-container">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title">Method Overview</h2>
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method Overview</h2>
         <div class="content has-text-justified">
           <figure class="image" style="margin-top: 1rem; text-align: center;">
             <img src="./static/images/method.png" alt="method overview" style="width: 100%; height: auto;">
@@ -264,10 +180,10 @@
 
 
 <section class="section">
-  <div class="narrow-container">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title">Level Design via Editable Memory</h2>
+      <div class="column is-full-width">
+        <h2 class="title is-3">Level Design via Editable Memory</h2>
         <div class="content has-text-justified">
           <figure class="image" style="margin-bottom: 1rem; text-align: center;">
             <img src="./static/images/level_design_method.png" alt="level design via editable memory" style="width: 100%; height: auto;">
@@ -294,10 +210,10 @@
 </section>
 
 <section class="section">
-  <div class="narrow-container">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title">Multiplayer Interaction</h2>
+      <div class="column is-full-width">
+        <h2 class="title is-3">Multiplayer Interaction</h2>
         <div class="content has-text-justified">
           <p>
             The external memory not only enables editability of the environment, it also naturally extends to act as a shared state that multiple agents can condition on and update during generated roll-outs. In our multiplayer setting, the shared world state is represented explicitly by the external memory: the static map layout together with the set of active player poses. Generation is distributed: each player runs their own copy of the Observation and Dynamics modules, while all players read from and write to the same shared memory. This distributed design supports an arbitrary number of players without changing the model interface, and runs at approximately 20 FPS for real-time interactive multiplayer experiences.
@@ -312,10 +228,10 @@
 </section>
 
 <section class="section">
-  <div class="narrow-container">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title">Real-Time Multiplayer Gameplay</h2>
+      <div class="column is-full-width">
+        <h2 class="title is-3">Real-Time Multiplayer Gameplay</h2>
         <div class="content has-text-justified">
           <p>
             Our method naturally supports an arbitrary number of players without requiring any architectural changes. Because each player runs their own Observation and Dynamics modules while sharing a common external memory, adding more players simply means running additional instances that read from and write to the same shared state. Furthermore, our method can sustain real-time multiplayer gameplay for extremely long time horizons. Below we show a timelapse of 30 minutes of 4-player gameplay, demonstrating the stability and consistency of our approach over extended play sessions.
@@ -339,8 +255,8 @@
 </section>
 
 <section class="section" id="BibTeX">
-  <div class="narrow-container content">
-    <h2 class="title">BibTeX</h2>
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
     <pre><code>@misc{po2025multigen,
   title={MultiGen: Level-Design for Editable Multiplayer Worlds in Diffusion Game Engines},
   author={Ryan Po and David Junhao Zhang and Amir Hertz and Gordon Wetzstein and Neal Wadhwa and Nataniel Ruiz},
@@ -352,7 +268,7 @@
 </section>
 
 <footer class="footer">
-  <div class="narrow-container">
+  <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
