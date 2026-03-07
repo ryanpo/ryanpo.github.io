@@ -45,6 +45,40 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
 
+          <tr onmouseout="multigen_stop()" onmouseover="multigen_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle;text-align:center;">
+              <img src='images/multigen.gif' width="180" style="vertical-align:middle;">
+              <script type="text/javascript">
+                function multigen_start() {
+                  document.getElementById('multigen_image').style.opacity = "1";
+                }
+
+                function multigen_stop() {
+                  document.getElementById('multigen_image').style.opacity = "0";
+                }
+                multigen_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://ryanpo.com/multigen/">
+                <papertitle>MultiGen: Level-Design for Editable Multiplayer Worlds in Diffusion Game Engines
+                </papertitle>
+              </a>
+              <br>
+              <strong>Ryan Po</strong>,
+              David Junhao Zhang,
+              Amir Hertz,
+              Gordon Wetzstein,
+              Neal Wadhwa,
+              Nataniel Ruiz
+              <br>
+              <em>Preprint</em>, 2026
+              <br>
+              <a href="https://ryanpo.com/multigen/">project page</a>
+              <p></p>
+            </td>
+          </tr>
+
           <tr onmouseout="bagger_stop()" onmouseover="bagger_start()">
             <td style="padding:20px;width:25%;vertical-align:middle;text-align:center;">
               <img src='images/bagger.gif' width="180" style="vertical-align:middle;">
